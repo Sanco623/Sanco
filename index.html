@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifestacija: Rođendan Ismeta & Lamije</title>
+    <style>
+        /* CSS STILOVI - Kompletan vizuelni identitet portala */
+        :root {
+            --primary: #4a0e4e;
+            --secondary: #b33939;
+            --accent: #e0a96d;
+            --dark: #2c2c2c;
+            --light: #f9f9f9;
+            --success: #218c74;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Navigacija */
+        header {
+            background-color: var(--primary);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Sekcija */
+        .hero {
+            background: linear-gradient(rgba(74, 14, 78, 0.8), rgba(179, 57, 57, 0.8)), url('https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        /* Odbrojavanje (Countdown) */
+        .countdown-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+            min-width: 90px;
+        }
+
+        .countdown-box span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .hero-btn {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            background-color: white;
+        }
+
+        /* Glavni sadržaj i sekcije */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            padding: 40px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Info Kartice Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 5px solid var(--primary);
+            transition: translateY 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* Protokol / Satnica Vremenska Linija */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid var(--secondary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: background-color 0.3s;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        .right::after { left: -10px; }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .timeline-time {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        /* Checkbox za interaktivni protokol */
+        .protocol-check {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #777;
+            cursor: pointer;
+        }
+
+        .completed .timeline-content {
+            background-color: #e8f5e9;
+            border-left: 5px solid var(--success);
+        }
+
+        /* Gosti Sekcija */
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 30px auto;
+            display: block;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary);
+        }
+
+        .guests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .guest-badge {
+            background-color: white;
+            padding: 15px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .guest-badge:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .guest-status {
+            width: 10px;
+            height: 10px;
+            background-color: var(--success);
+            border-radius: 50%;
+        }
+
+        /* Muzika & Multimedija (Simulacija) */
+        .music-player {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .track-info h4 { font-size: 1.4rem; margin-bottom: 5px; }
+        .track-info p { color: var(--accent); margin-bottom: 20px; }
+
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .player-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .player-btn:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
+        .player-btn.play { width: 65px; height: 65px; background: var(--accent); color: var(--primary); font-weight: bold;}
+
+        .progress-bar-container {
+            width: 100%;
+            background: rgba(255,255,255,0.2);
+            height: 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 35%;
+            background: var(--accent);
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+
+        /* Kviz Sekcija */
+        .quiz-container {
+            background: white;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background-color: #e0e0e0;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--secondary);
+            background-color: #fce4e4;
+        }
+
+        .quiz-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .quiz-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* RSVP / Knjiga Utisaka Form */
+        .rsvp-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn-submit {
+            background-color: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #8c2626;
+        }
+
+        /* Panel sa Obavještenjima */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 2000;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #888;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: var(--accent);
+        }
+
+        /* Responzivnost za mobilne uređaje */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 15px; }
+            nav ul { width: 100%; justify-content: center; }
+            .hero h1 { font-size: 2.3rem; }
+            .timeline::before { left: 40px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item.right { left: 0; }
+            .timeline-item::after { left: 30px; }
+            .right::after { left: 30px; }
+            .countdown-container { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">🎉 Ismet & Lamija</div>
+            <nav>
+                <ul>
+                    <li><a href="#pocetna">Početna</a></li>
+                    <li><a href="#detalji">Detalji</a></li>
+                    <li><a href="#protokol">Protokol</a></li>
+                    <li><a href="#gosti">Gosti</a></li>
+                    <li><a href="#zabava">Zabava</a></li>
+                    <li><a href="#potvrda">Potvrda dolaska</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="pocetna" class="hero">
+        <h1>Manifestacija Rođendana</h1>
+        <p>Pridružite nam se na nezaboravnoj proslavi zajedničkog rođendana Ismeta i Lamije!</p>
+
+        <div class="countdown-container">
+            <div class="countdown-box"><span id="days">00</span>Dana</div>
+            <div class="countdown-box"><span id="hours">00</span>Sati</div>
+            <div class="countdown-box"><span id="minutes">00</span>Minuta</div>
+            <div class="countdown-box"><span id="seconds">00</span>Sekundi</div>
+        </div>
+
+        <a href="#potvrda" class="hero-btn">Potvrdi Dolazak</a>
+    </section>
+
+    <div class="container">
+
+        <section id="detalji">
+            <h2 class="section-title">Osnovne Informacije</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Mjesto & Vrijeme</h3>
+                    <p><strong>Podgora Breza</strong></p>
+                    <p>Datum: 17.06.2026.</p>
+                    <p>Početak: 14:00h</p>
+                </div>
+                <div class="info-card">
+                    <h3>Tačna Lokacija</h3>
+                    <p><strong>Šadrvan</strong></p>
+                    <p>Vlasnik: Mirnes Silajdžić</p>
+                    <p>Ugodan ambijent u prirodi</p>
+                </div>
+                <div class="info-card">
+                    <h3>Organizacija</h3>
+                    <p>Glavni Organizator:</p>
+                    <p><strong>Sančo Turković</strong></p>
+                    <p>Koordinacija i logistika</p>
+                </div>
+                <div class="info-card">
+                    <h3>Domaćin</h3>
+                    <p>Dobrodošlicu želi:</p>
+                    <p><strong>Emina Kovač</strong></p>
+                    <p>Zadužena za osmijehe i doček</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="protokol">
+            <h2 class="section-title">Protokol Manifestacije</h2>
+            <p style="text-align:center; margin-bottom: 30px; color: #666;">Interaktivna satnica. Označite događaje koji su završeni uživo tokom proslave!</p>
+
+            <div class="timeline">
+                <div class="timeline-item left" id="p1">
+                    <div class="timeline-content">
+                        <div class="timeline-time">14:00h</div>
+                        <h4>Dolazak gostiju</h4>
+                        <p>Okupljanje, smještaj i piće dobrodošlice.</p>
+                        <label class="protocol-check">
+                            <input type="checkbox" onchange="toggleProtocol('p1')"> Označi kao završeno
+                        </label>
+                    </div>
+                </div>
+                <div class="timeline-item right" id="p2">
+                    <div class="timeline-content">
+                        <div class="timeline-time">14:15h</div>
+                        <h4>Dolazak organizatora</h4>
+                        <p>Zvanični dolazak organizatora Sanče Turkovića i provjera spremnosti.</p>
+                        <label class="protocol-check">
+                            <input type="checkbox" onchange="toggleProtocol('p2')"> Označi kao završeno
+                        </label>
+                    </div>
+                </div>
+                <div class="timeline-item left" id="p3">
+                    <div class="timeline-content">
+                        <div class="timeline-time">14:20h</div>
+                        <h4>Puštanje muzike</h4>
+                        <p>Početak muzičkog programa i podizanje atmosfere.</p>
+                        <label class="protocol-check">
+                            <input type="checkbox" onchange="toggleProtocol('p3')"> Označi kao završeno
+                        </label>
+                    </div>
+                </div>
+                <div class="timeline-item right" id="p4">
+                    <div class="timeline-content">
+                        <div class="timeline-time">14:30h</div>
+                        <h4>Roštilj</h4>
+                        <p>Paljenje roštilja, priprema vrhunskih specijaliteta pod nadzorom ekipe.</p>
+                        <label class="protocol-check">
+                            <input type="checkbox" onchange="toggleProtocol('p4')"> Označi kao završeno
+                        </label>
+                    </div>
+                </div>
+                <div class="timeline-item left" id="p5">
+                    <div class="timeline-content">
+                        <div class="timeline-time">15:00h</div>
+                        <h4>Jelo (Glavni ručak)</h4>
+                        <p>Zajednički ručak za šadrvanom. Serviranje specijaliteta sa roštilja.</p>
+                        <label class="protocol-check">
+                            <input type="checkbox" onchange="toggleProtocol('p5')"> Označi kao završeno
+                        </label>
+                    </div>
+                </div>
+                <div class="timeline-item right" id="p6">
+                    <div class="timeline-content">
+                        <div class="timeline-time">15:25h</div>
+                        <h4>Puhanje svjećica & Torta</h4>
+                        <p>Tradicionalno puhanje svjećica slavljenika Ismeta i Lamije uz rođendansku pjesmu.</p>
+                        <label class="protocol-check">
+                            <input type="checkbox" onchange="toggleProtocol('p6')"> Označi kao završeno
+                        </label>
+                    </div>
+                </div>
+                <div class="timeline-item left" id="p7">
+                    <div class="timeline-content">
+                        <div class="timeline-time">16:00h</div>
+                        <h4>Dodjela zahvalnica</h4>
+                        <p>Svečani trenutak uručivanja zahvalnica gostima za prisustvo i doprinos manifestaciji.</p>
+                        <label class="protocol-check">
+                            <input type="checkbox" onchange="toggleProtocol('p7')"> Označi kao završeno
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gosti">
+            <h2 class="section-title">VIP Gosti Manifestacije</h2>
+
+            <input type="text" id="guestSearch" class="search-box" placeholder="Pretraži gosta po imenu..." onkeyup="filterGuests()">
+
+            <div class="guests-grid" id="guestsList">
+                <div class="guest-badge"><div class="guest-status"></div>Amina Vreto</div>
+                <div class="guest-badge"><div class="guest-status"></div>Lejla Bulbul</div>
+                <div class="guest-badge"><div class="guest-status"></div>Erduana Tarić</div>
+                <div class="guest-badge"><div class="guest-status"></div>Berina Tarić</div>
+                <div class="guest-badge"><div class="guest-status"></div>Emina Omanović</div>
+                <div class="guest-badge"><div class="guest-status"></div>Selma Solak</div>
+                <div class="guest-badge"><div class="guest-status"></div>Džejlan Silajdžić</div>
+                <div class="guest-badge"><div class="guest-status"></div>Semir Turković</div>
+            </div>
+        </section>
+
+        <section id="zabava">
+            <h2 class="section-title">Zona za Zabavu</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 20px;">
+
+                <div class="music-player">
+                    <div class="track-info">
+                        <h4>Trenutno svira: Birthday Hits 2026</h4>
+                        <p>Mix za Ismeta i Lamiju</p>
+                    </div>
+                    <div class="player-controls">
+                        <button class="player-btn" onclick="showToast('Prethodna pjesma')">⏮</button>
+                        <button class="player-btn play" id="playBtn" onclick="togglePlay()">▶</button>
+                        <button class="player-btn" onclick="showToast('Sljedeća pjesma')">⏭</button>
+                    </div>
+                    <div class="progress-bar-container" onclick="showToast('Premotavanje funkcionalno u punoj verziji')">
+                        <div class="progress-bar" id="musicProgress"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: #eee; margin-top: 15px;">Playlistu odabrao: Sančo Turković</p>
+                </div>
+
+                <div class="quiz-container">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">🧠 Rođendanski Mini Kviz</h3>
+                    <div id="quiz-box">
+                        <p class="quiz-question" id="questionText">U kojem mjestu se održava manifestacija rođendana?</p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectOption(this, 0)">Sarajevo</div>
+                            <div class="quiz-option" onclick="selectOption(this, 1)">Podgora Breza</div>
+                            <div class="quiz-option" onclick="selectOption(this, 2)">Visoko</div>
+                        </div>
+                        <div class="quiz-controls">
+                            <span id="quiz-feedback" style="font-weight: 600; padding-top: 8px;"></span>
+                            <button class="quiz-btn" onclick="checkAnswer()">Provjeri</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="potvrda">
+            <h2 class="section-title">Potvrda Dolaska & Knjiga Utisaka</h2>
+            <form class="rsvp-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="gostIme">Vaše Ime i Prezime</label>
+                    <input type="text" id="gostIme" class="form-control" required placeholder="Unesite ime sa VIP liste">
+                </div>
+                <div class="form-group">
+                    <label for="dolazakSelect">Da li dolazite?</label>
+                    <select id="dolazakSelect" class="form-control">
+                        <option value="da">Da, naravno! Jedva čekam!</option>
+                        <option value="mozda">Još uvijek nisam siguran/a</option>
+                        <option value="ne">Nažalost, spriječen/a sam</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="poruka">Čestitka slavljenicima ili poruka organizatoru</label>
+                    <textarea id="poruka" class="form-control" rows="4" placeholder="Sretan rođendan Ismetu i Lamiji..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Pošalji Potvrdu</button>
+            </form>
+        </section>
+
+    </div>
+
+    <div class="toast" id="toastBox">Uspješno obavljeno!</div>
+
+    <footer>
+        <p>&copy; 2026 Manifestacija Podgora Breza. Sva prava zadržana.</p>
+        <p>Glavni organizator: <strong>Sančo Turković</strong> | Domaćin: <strong>Emina Kovač</strong></p>
+    </footer>
+
+    <script>
+        // 1. COUNTDOWN TIMER (Odbrojavanje do 17.06. u 14:00)
+        // Postavljamo ciljni datum za tekuću godinu
+        const targetDate = new Date("June 17, 2026 14:00:00").getTime();
+
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            // Računanje vremena
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Prikaz rezultata u elementima
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            // Ako je odbrojavanje završeno
+            if (difference < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector(".countdown-container").innerHTML = "<h3 style='color:var(--accent); font-size:2rem;'>Manifestacija je počela! Dobrodošli!</h3>";
+            }
+        }, 1000);
+
+        // 2. FUNKCIJA ZA PROTOKOL (Uživo check-lista)
+        function toggleProtocol(id) {
+            const element = document.getElementById(id);
+            if(element) {
+                element.classList.toggle("completed");
+                if(element.classList.contains("completed")) {
+                    showToast("Faza protokola uspješno završena! ✔");
+                }
+            }
+        }
+
+        // 3. FILTER / PRETRAGA GOSTIJU
+        function filterGuests() {
+            const input = document.getElementById('guestSearch');
+            const filter = input.value.toLowerCase();
+            const grid = document.getElementById('guestsList');
+            const badges = grid.getElementsByClassName('guest-badge');
+
+            for (let i = 0; i < badges.
