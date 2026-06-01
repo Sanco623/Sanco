@@ -155,7 +155,7 @@
         }
 
         section {
-            padding: 40px 0;
+            padding: 60px 0 40px 0;
             border-bottom: 1px solid #e0e0e0;
         }
 
@@ -191,7 +191,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             text-align: center;
             border-top: 5px solid var(--primary);
-            transition: translateY 0.3s;
+            transition: transform 0.3s;
         }
 
         .info-card:hover {
@@ -331,7 +331,7 @@
             border-radius: 50%;
         }
 
-        /* Muzika & Multimedija (Simulacija) */
+        /* Muzika & Multimedija */
         .music-player {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
@@ -386,63 +386,7 @@
             transition: width 0.1s linear;
         }
 
-        /* Kviz Sekcija */
-        .quiz-container {
-            background: white;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-
-        .quiz-question {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .quiz-option {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-            border: 2px solid transparent;
-        }
-
-        .quiz-option:hover {
-            background-color: #e0e0e0;
-        }
-
-        .quiz-option.selected {
-            border-color: var(--secondary);
-            background-color: #fce4e4;
-        }
-
-        .quiz-controls {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .quiz-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* RSVP / Knjiga Utisaka Form */
+        /* RSVP Form */
         .rsvp-form {
             max-width: 600px;
             margin: 0 auto;
@@ -492,7 +436,7 @@
             background-color: #8c2626;
         }
 
-        /* Panel sa Obavještenjima */
+        /* Obavještenja */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -507,6 +451,15 @@
             animation: slideIn 0.5s ease-out;
         }
 
+        .birthday-wish {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--secondary);
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
         @keyframes slideIn {
             from { transform: translateX(100%); }
             to { transform: translateX(0); }
@@ -517,7 +470,7 @@
             background-color: #1a1a1a;
             color: #888;
             text-align: center;
-            padding: 30px;
+            padding: 40px 20px;
             font-size: 0.9rem;
         }
 
@@ -525,10 +478,11 @@
             color: var(--accent);
         }
 
-        /* Responzivnost za mobilne uređaje */
+        /* Responzivnost */
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; gap: 15px; }
-            nav ul { width: 100%; justify-content: center; }
+            nav ul { width: 100%; justify-content: center; flex-wrap: wrap; gap: 10px; }
+            nav ul li { margin-left: 0; }
             .hero h1 { font-size: 2.3rem; }
             .timeline::before { left: 40px; }
             .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
@@ -701,40 +655,20 @@
         <section id="zabava">
             <h2 class="section-title">Zona za Zabavu</h2>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 20px;">
-
-                <div class="music-player">
-                    <div class="track-info">
-                        <h4>Trenutno svira: Birthday Hits 2026</h4>
-                        <p>Mix za Ismeta i Lamiju</p>
-                    </div>
-                    <div class="player-controls">
-                        <button class="player-btn" onclick="showToast('Prethodna pjesma')">⏮</button>
-                        <button class="player-btn play" id="playBtn" onclick="togglePlay()">▶</button>
-                        <button class="player-btn" onclick="showToast('Sljedeća pjesma')">⏭</button>
-                    </div>
-                    <div class="progress-bar-container" onclick="showToast('Premotavanje funkcionalno u punoj verziji')">
-                        <div class="progress-bar" id="musicProgress"></div>
-                    </div>
-                    <p style="font-size: 0.8rem; color: #eee; margin-top: 15px;">Playlistu odabrao: Sančo Turković</p>
+            <div class="music-player">
+                <div class="track-info">
+                    <h4>Trenutno svira: Birthday Hits 2026</h4>
+                    <p>Mix za Ismeta i Lamiju</p>
                 </div>
-
-                <div class="quiz-container">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">🧠 Rođendanski Mini Kviz</h3>
-                    <div id="quiz-box">
-                        <p class="quiz-question" id="questionText">U kojem mjestu se održava manifestacija rođendana?</p>
-                        <div class="quiz-options">
-                            <div class="quiz-option" onclick="selectOption(this, 0)">Sarajevo</div>
-                            <div class="quiz-option" onclick="selectOption(this, 1)">Podgora Breza</div>
-                            <div class="quiz-option" onclick="selectOption(this, 2)">Visoko</div>
-                        </div>
-                        <div class="quiz-controls">
-                            <span id="quiz-feedback" style="font-weight: 600; padding-top: 8px;"></span>
-                            <button class="quiz-btn" onclick="checkAnswer()">Provjeri</button>
-                        </div>
-                    </div>
+                <div class="player-controls">
+                    <button class="player-btn" onclick="showToast('Prethodna pjesma')">⏮</button>
+                    <button class="player-btn play" id="playBtn" onclick="togglePlay()">▶</button>
+                    <button class="player-btn" onclick="showToast('Sljedeća pjesma')">⏭</button>
                 </div>
-
+                <div class="progress-bar-container" onclick="showToast('Premotavanje funkcionalno u punoj verziji')">
+                    <div class="progress-bar" id="musicProgress"></div>
+                </div>
+                <p style="font-size: 0.8rem; color: #eee; margin-top: 15px;">Playlistu odabrao: Sančo Turković</p>
             </div>
         </section>
 
@@ -766,35 +700,35 @@
     <div class="toast" id="toastBox">Uspješno obavljeno!</div>
 
     <footer>
+        <div class="birthday-wish">Lamija i Ismete, sretan vam rođendan! 🎉🎂</div>
+        <br><br>
         <p>&copy; 2026 Manifestacija Podgora Breza. Sva prava zadržana.</p>
         <p>Glavni organizator: <strong>Sančo Turković</strong> | Domaćin: <strong>Emina Kovač</strong></p>
     </footer>
 
     <script>
-        // 1. COUNTDOWN TIMER (Odbrojavanje do 17.06. u 14:00)
-        // Postavljamo ciljni datum za tekuću godinu
+        // 1. COUNTDOWN TIMER (Podešen na dan manifestacije: 17.06. u 14:00h)
         const targetDate = new Date("June 17, 2026 14:00:00").getTime();
 
         const countdownInterval = setInterval(function() {
             const now = new Date().getTime();
             const difference = targetDate - now;
 
-            // Računanje vremena
+            // Računanje preostalog vremena
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            // Prikaz rezultata u elementima
-            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
-
-            // Ako je odbrojavanje završeno
-            if (difference < 0) {
+            // Prikaz rezultata na ekranu
+            if (difference > 0) {
+                document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+                document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+                document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            } else {
                 clearInterval(countdownInterval);
-                document.querySelector(".countdown-container").innerHTML = "<h3 style='color:var(--accent); font-size:2rem;'>Manifestacija je počela! Dobrodošli!</h3>";
+                document.querySelector(".countdown-container").innerHTML = "<h3 style='color:var(--accent); font-size:2rem;'>Manifestacija je počela! Dobrodošli! 🎉</h3>";
             }
         }, 1000);
 
@@ -816,4 +750,47 @@
             const grid = document.getElementById('guestsList');
             const badges = grid.getElementsByClassName('guest-badge');
 
-            for (let i = 0; i < badges.
+            for (let i = 0; i < badges.length; i++) {
+                const textValue = badges[i].textContent || badges[i].innerText;
+                if (textValue.toLowerCase().indexOf(filter) > -1) {
+                    badges[i].style.display = "";
+                } else {
+                    badges[i].style.display = "none";
+                }
+            }
+        }
+
+        // 4. TOAST NOTIFIKACIJE
+        function showToast(message) {
+            const toast = document.getElementById("toastBox");
+            toast.innerText = message;
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3000);
+        }
+
+        // 5. SIMULACIJA PLEJERA
+        let isPlaying = false;
+        function togglePlay() {
+            const btn = document.getElementById("playBtn");
+            isPlaying = !isPlaying;
+            if(isPlaying) {
+                btn.innerText = "⏸";
+                showToast("Muzika pokrenuta! 🎵");
+            } else {
+                btn.innerText = "▶";
+                showToast("Muzika pauzirana.");
+            }
+        }
+
+        // 6. FORMA RSVP SUBMIT
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const ime = document.getElementById("gostIme").value;
+            showToast(`Hvala Vam ${ime}, potvrda je uspješno poslana! 🎉`);
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
